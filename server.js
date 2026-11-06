@@ -125,6 +125,7 @@ admin.get('/overview', wrap(async (req, res) => {
     kings: rank(KINGS, results.king),
     queens: rank(QUEENS, results.queen),
     yourIp: req.ip,
+    forwardedFor: req.get('x-forwarded-for') || null,
   });
 }));
 
