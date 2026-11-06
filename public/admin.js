@@ -53,8 +53,8 @@
   async function refresh() {
     try {
       const d = await api('/overview');
-      $('[data-total]').textContent = d.total;
       $('[data-open]').textContent = d.settings.votingOpen ? 'Aberta' : 'Encerrada';
+      $('[data-total]').textContent = d.total;
       $('[data-updated]').textContent = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       $('[data-ip]').textContent = d.yourIp;
       renderRank($('[data-rank="kings"]'), d.kings);
@@ -77,7 +77,7 @@
     codes = await api('/codes');
     const used = codes.filter((c) => c.used_at).length;
     $('[data-code-count]').textContent = codes.length
-      ? `${codes.length} códigos · ${used} usados · ${codes.length - used} disponíveis`
+      ? `${codes.length} códigos — ${used} usados, ${codes.length - used} disponíveis`
       : 'Nenhum código gerado ainda.';
     const box = $('[data-codes]');
     box.innerHTML = '';
@@ -142,7 +142,7 @@
       sheet.innerHTML = '';
       for (const c of codes.filter((x) => !x.used_at)) {
         const d = document.createElement('div');
-        d.innerHTML = '<small>🌸 BAILE DE PRIMAVERA · CÓDIGO DE VOTO</small><b></b><small>vale 1 voto · uso único</small>';
+        d.innerHTML = '<small>Baile de Primavera · Código de voto</small><b></b><small>Rei &amp; Rainha · uso único</small>';
         d.querySelector('b').textContent = c.code;
         sheet.appendChild(d);
       }

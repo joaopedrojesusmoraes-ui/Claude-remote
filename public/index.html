@@ -3,67 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Baile de Primavera · Votação</title>
-  <meta name="description" content="Vote no Rei e na Rainha do Baile de Primavera">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <title>Rei &amp; Rainha · Baile de Primavera</title>
+  <meta name="description" content="Votação para Rei e Rainha do Baile de Primavera">
+  <meta name="theme-color" content="#F4EFE4">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="petals" aria-hidden="true"></div>
-
-  <header class="hero">
-    <p class="eyebrow">✿ edição 2026 ✿</p>
-    <h1>Baile de <em>Primavera</em></h1>
-    <p class="lead">Escolha quem vai usar a coroa esta noite: <strong>um Rei</strong> e <strong>uma Rainha</strong>.</p>
+  <header class="masthead">
+    <div class="meta">
+      <span>Baile de Primavera</span>
+      <span>Edição 2026</span>
+    </div>
+    <svg class="sprig" viewBox="0 0 200 40" aria-hidden="true">
+      <g class="stem">
+        <path d="M100 22 C 82 23, 62 27, 28 19"/>
+        <path d="M100 22 C 118 23, 138 27, 172 19"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(84 23) rotate(212)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(70 25) rotate(150)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(52 24) rotate(208)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(40 22) rotate(152)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(116 23) rotate(-32)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(130 25) rotate(30)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(148 24) rotate(-28)"/>
+        <path d="M0 0 C 4 -4.5, 11 -4.5, 15 0 C 11 4.5, 4 4.5, 0 0 Z" transform="translate(160 22) rotate(28)"/>
+      </g>
+      <g class="bloom">
+        <ellipse cx="100" cy="14.5" rx="3.4" ry="6.2" transform="rotate(0 100 21)"/>
+        <ellipse cx="100" cy="14.5" rx="3.4" ry="6.2" transform="rotate(72 100 21)"/>
+        <ellipse cx="100" cy="14.5" rx="3.4" ry="6.2" transform="rotate(144 100 21)"/>
+        <ellipse cx="100" cy="14.5" rx="3.4" ry="6.2" transform="rotate(216 100 21)"/>
+        <ellipse cx="100" cy="14.5" rx="3.4" ry="6.2" transform="rotate(288 100 21)"/>
+        <circle class="heart" cx="100" cy="21" r="2"/>
+      </g>
+    </svg>
+    <h1>Rei <em>&amp;</em> Rainha</h1>
+    <p class="intro">Escolha um nome em cada lista. O voto é secreto e só pode ser feito uma vez.</p>
   </header>
 
-  <main id="app">
-    <p class="loading">Carregando…</p>
+  <main id="app" aria-live="polite">
+    <p class="loading">Carregando a cédula…</p>
   </main>
 
   <template id="tpl-vote">
-    <section class="category" data-cat="king">
-      <h2><span class="crown">👑</span> Rei do Baile</h2>
-      <div class="grid" role="radiogroup" aria-label="Rei do Baile"></div>
-    </section>
-    <section class="category" data-cat="queen">
-      <h2><span class="crown">👑</span> Rainha do Baile</h2>
-      <div class="grid" role="radiogroup" aria-label="Rainha do Baile"></div>
-    </section>
-    <div class="spacer"></div>
-    <div class="bar">
-      <div class="bar-inner">
-        <div class="picks">
-          <span><small>Rei</small><b data-pick="king">—</b></span>
-          <span><small>Rainha</small><b data-pick="queen">—</b></span>
-        </div>
+    <form class="ballot" novalidate>
+      <section class="list" data-cat="king">
+        <header>
+          <span class="roman">I</span>
+          <h2>Rei do Baile</h2>
+          <span class="count"></span>
+        </header>
+        <ol role="radiogroup" aria-label="Rei do Baile"></ol>
+      </section>
+      <section class="list" data-cat="queen">
+        <header>
+          <span class="roman">II</span>
+          <h2>Rainha do Baile</h2>
+          <span class="count"></span>
+        </header>
+        <ol role="radiogroup" aria-label="Rainha do Baile"></ol>
+      </section>
+    </form>
+    <div class="tray">
+      <div class="tray-inner">
+        <dl class="choice">
+          <div><dt>Rei</dt><dd data-pick="king"></dd></div>
+          <div><dt>Rainha</dt><dd data-pick="queen"></dd></div>
+        </dl>
         <label class="code-field" hidden>
-          <small>Código de votação</small>
-          <input name="code" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="EX: K7P2QX">
+          <span>Código de votação</span>
+          <input name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="K7P2QX">
         </label>
-        <button class="btn" data-action="review" disabled>Votar</button>
+        <button type="button" class="btn" data-action="review" disabled>Revisar voto</button>
       </div>
     </div>
   </template>
 
-  <dialog id="confirm">
-    <h3>Confirmar voto?</h3>
-    <p>Depois de enviar, <strong>não dá para mudar</strong>.</p>
-    <ul class="summary">
-      <li><small>Rei</small><b data-confirm="king"></b></li>
-      <li><small>Rainha</small><b data-confirm="queen"></b></li>
-    </ul>
+  <dialog id="confirm" aria-labelledby="confirm-title">
+    <p class="kicker">Antes de enviar</p>
+    <h3 id="confirm-title">Confirme seu voto</h3>
+    <dl class="summary">
+      <div><dt>Rei</dt><dd data-confirm="king"></dd></div>
+      <div><dt>Rainha</dt><dd data-confirm="queen"></dd></div>
+    </dl>
+    <p class="fine">Depois de confirmar não é possível alterar.</p>
     <p class="error" role="alert" hidden></p>
     <div class="actions">
-      <button class="btn ghost" data-action="cancel">Voltar</button>
-      <button class="btn" data-action="send">Confirmar voto</button>
+      <button type="button" class="btn quiet" data-action="cancel">Voltar</button>
+      <button type="button" class="btn" data-action="send">Confirmar</button>
     </div>
   </dialog>
 
-  <footer>Feito com 🌷 para o Baile de Primavera</footer>
+  <footer class="colophon">Baile de Primavera · 2026</footer>
   <script src="app.js"></script>
 </body>
 </html>
