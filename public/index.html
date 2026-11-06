@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baile de Primavera · Votação</title>
+  <meta name="description" content="Vote no Rei e na Rainha do Baile de Primavera">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="petals" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">✿ edição 2026 ✿</p>
+    <h1>Baile de <em>Primavera</em></h1>
+    <p class="lead">Escolha quem vai usar a coroa esta noite: <strong>um Rei</strong> e <strong>uma Rainha</strong>.</p>
+  </header>
+
+  <main id="app">
+    <p class="loading">Carregando…</p>
+  </main>
+
+  <template id="tpl-vote">
+    <section class="category" data-cat="king">
+      <h2><span class="crown">👑</span> Rei do Baile</h2>
+      <div class="grid" role="radiogroup" aria-label="Rei do Baile"></div>
+    </section>
+    <section class="category" data-cat="queen">
+      <h2><span class="crown">👑</span> Rainha do Baile</h2>
+      <div class="grid" role="radiogroup" aria-label="Rainha do Baile"></div>
+    </section>
+    <div class="spacer"></div>
+    <div class="bar">
+      <div class="bar-inner">
+        <div class="picks">
+          <span><small>Rei</small><b data-pick="king">—</b></span>
+          <span><small>Rainha</small><b data-pick="queen">—</b></span>
+        </div>
+        <label class="code-field" hidden>
+          <small>Código de votação</small>
+          <input name="code" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="EX: K7P2QX">
+        </label>
+        <button class="btn" data-action="review" disabled>Votar</button>
+      </div>
+    </div>
+  </template>
+
+  <dialog id="confirm">
+    <h3>Confirmar voto?</h3>
+    <p>Depois de enviar, <strong>não dá para mudar</strong>.</p>
+    <ul class="summary">
+      <li><small>Rei</small><b data-confirm="king"></b></li>
+      <li><small>Rainha</small><b data-confirm="queen"></b></li>
+    </ul>
+    <p class="error" role="alert" hidden></p>
+    <div class="actions">
+      <button class="btn ghost" data-action="cancel">Voltar</button>
+      <button class="btn" data-action="send">Confirmar voto</button>
+    </div>
+  </dialog>
+
+  <footer>Feito com 🌷 para o Baile de Primavera</footer>
+  <script src="app.js"></script>
+</body>
+</html>

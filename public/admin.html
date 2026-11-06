@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Painel · Baile de Primavera</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+  <header class="hero small">
+    <p class="eyebrow">painel da organização</p>
+    <h1>Apuração <em>ao vivo</em></h1>
+  </header>
+
+  <main>
+    <form id="login" class="panel login">
+      <h2>Entrar</h2>
+      <p class="muted">Digite a senha de administrador (variável <code>ADMIN_PASSWORD</code>).</p>
+      <input type="password" name="password" placeholder="Senha" autocomplete="current-password" required>
+      <p class="error" hidden></p>
+      <button class="btn">Entrar</button>
+    </form>
+
+    <div id="dash" hidden>
+      <div class="stats">
+        <div class="panel stat"><small>Total de votos</small><b data-total>0</b></div>
+        <div class="panel stat"><small>Votação</small><b data-open>—</b></div>
+        <div class="panel stat"><small>Atualizado</small><b data-updated>—</b></div>
+      </div>
+
+      <div class="two">
+        <section class="panel">
+          <h2>👑 Rei</h2>
+          <ol class="rank" data-rank="kings"></ol>
+        </section>
+        <section class="panel">
+          <h2>👑 Rainha</h2>
+          <ol class="rank" data-rank="queens"></ol>
+        </section>
+      </div>
+
+      <section class="panel">
+        <h2>⚙️ Regras da votação</h2>
+        <form id="settings" class="settings">
+          <label class="check"><input type="checkbox" name="votingOpen"> Votação aberta</label>
+          <label class="check"><input type="checkbox" name="requireCode"> Exigir código de votação (1 código = 1 voto)</label>
+          <label class="inline">Máximo de votos por IP
+            <input type="number" name="maxPerIp" min="0" step="1">
+          </label>
+          <p class="muted">
+            <b>0 = sem limite por IP.</b> Atenção: todo mundo no mesmo Wi-Fi (ex.: da escola) costuma sair com o
+            <b>mesmo IP</b>. Se o limite for 1, só a primeira pessoa dessa rede consegue votar.
+            Para o dia do baile, o mais seguro é usar <b>códigos</b> e colocar o limite por IP em 0.
+            Cada aparelho sempre vota só 1 vez (cookie), independente disso.
+          </p>
+          <p class="muted">Seu IP detectado pelo servidor: <code data-ip>—</code></p>
+          <button class="btn green">Salvar regras</button>
+          <span class="saved" hidden>✓ salvo</span>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>🎟️ Códigos de votação</h2>
+        <p class="muted">Gere um código para cada aluno, imprima, recorte e entregue. Cada código vale um único voto.</p>
+        <form id="gen" class="row">
+          <input type="number" name="count" min="1" max="2000" value="50">
+          <button class="btn green">Gerar códigos</button>
+          <button type="button" class="btn ghost" data-action="print">Imprimir não usados</button>
+          <button type="button" class="btn ghost" data-action="csv">Baixar CSV</button>
+          <button type="button" class="btn ghost danger" data-action="del-unused">Apagar não usados</button>
+        </form>
+        <p class="muted" data-code-count></p>
+        <div class="codes" data-codes></div>
+      </section>
+
+      <section class="panel danger-zone">
+        <h2>🧨 Zerar votação</h2>
+        <p class="muted">Apaga <b>todos os votos</b> e libera os códigos usados. Use só para limpar os testes antes do baile.</p>
+        <button class="btn ghost danger" data-action="reset">Zerar todos os votos</button>
+      </section>
+
+      <p class="center"><button class="btn ghost" data-action="logout">Sair</button></p>
+    </div>
+  </main>
+
+  <div class="print-sheet" aria-hidden="true"></div>
+  <script src="admin.js"></script>
+</body>
+</html>
