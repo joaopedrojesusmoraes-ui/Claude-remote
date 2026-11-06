@@ -83,7 +83,7 @@ senão os votos somem a cada reinício.
 | `SQLITE_PATH` | Caminho do arquivo SQLite (ex.: num volume persistente). | `data/votos.db` |
 | `MAX_VOTES_PER_IP` | Limite inicial por IP (depois muda pelo painel). `0` = sem limite. | `1` |
 | `REQUIRE_CODE` | `true` para já começar exigindo código. | `false` |
-| `TRUST_PROXY` | Quantos proxies existem na frente do app. `1` em Render/Railway, `0` rodando direto no PC. | `1` |
+| `TRUST_PROXY` | Quantos proxies existem na frente do app. **`3` no Render** (Cloudflare + 2 internos, já vem no `render.yaml`), `0` rodando direto no PC. | `1` |
 | `IP_SALT` | Texto secreto usado no hash dos IPs. | fixo |
 | `PORT` | Porta do servidor. | `3000` |
 
