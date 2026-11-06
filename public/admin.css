@@ -1,5 +1,29 @@
-.admin-title { font-size: clamp(56px, 10vw, 104px); margin-top: 40px; }
+.admin .masthead, .admin main { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.admin .masthead { padding-top: 24px; text-align: center; }
+.meta {
+  display: flex; justify-content: space-between; padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px; font-weight: 400; letter-spacing: .3em; text-transform: uppercase; color: var(--cream-soft);
+}
+.admin .crown-rule { max-width: 360px; margin: 36px auto 0; }
+.admin-title { margin: 10px 0 0; font: 600 clamp(44px, 8vw, 76px)/1 var(--display); letter-spacing: .04em; }
 .admin main { padding-bottom: 48px; }
+.kicker { margin: 0; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.btn {
+  appearance: none; font: 500 12px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase;
+  color: var(--cream); background: linear-gradient(180deg, #b3172a, var(--red-deep));
+  border: 1px solid rgba(255, 140, 130, .35); border-radius: 999px; padding: 15px 24px; cursor: pointer; white-space: nowrap;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn.quiet { background: rgba(60, 3, 9, .35); border-color: var(--card-line); }
+.list > header {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--card-line);
+}
+.roman { height: 30px; width: auto; }
+.list h2 { margin: 0; font: 600 30px/1 var(--display); }
+.count { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--cream-soft); }
+.admin .decor .f { opacity: .55; }
 
 .login { max-width: 340px; margin: 56px auto; display: grid; gap: 10px; }
 .login .kicker { text-align: center; margin-bottom: 8px; }
@@ -21,12 +45,12 @@ input[type=password]:focus, input[type=number]:focus { outline: none; border-bot
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 48px 0 0;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  border-top: 1px solid var(--card-line);
+  border-bottom: 1px solid var(--card-line);
 }
 .stats div { padding: 18px 0 20px; }
 .stats div + div { padding-left: 24px; border-left: 1px solid var(--line); }
-.stats dd { margin: 6px 0 0; font: 400 44px/1 var(--serif); font-variant-numeric: tabular-nums; }
+.stats dd { margin: 8px 0 0; font: 500 44px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
 
 .results { display: grid; grid-template-columns: 1fr 1fr; gap: 0 72px; margin-top: 64px; }
 .rank { list-style: none; margin: 0; padding: 0; counter-reset: r; }
@@ -40,12 +64,12 @@ input[type=password]:focus, input[type=number]:focus { outline: none; border-bot
 }
 .rank li::before {
   content: counter(r, decimal-leading-zero);
-  font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums;
+  font-size: 12px; color: var(--ink-soft); font-variant-numeric: lining-nums tabular-nums;
 }
-.rank .nm { font: 400 22px/1.15 var(--serif); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.rank .ct { font: 400 26px/1 var(--serif); font-variant-numeric: tabular-nums; }
-.rank .bar-track { grid-column: 2 / 4; height: 2px; margin-top: 10px; background: var(--line); }
-.rank .bar-fill { display: block; height: 100%; background: var(--ink); transition: width .5s ease; }
+.rank .nm { font: 500 22px/1.15 var(--serif); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank .ct { font: 500 26px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
+.rank .bar-track { grid-column: 2 / 4; height: 2px; margin-top: 10px; background: rgba(244, 200, 180, .12); }
+.rank .bar-fill { display: block; height: 100%; background: var(--cream-soft); transition: width .5s ease; }
 .rank li.top .nm { font-style: italic; color: var(--rose); }
 .rank li.top .ct { color: var(--rose); }
 .rank li.top .bar-fill { background: var(--rose); }
@@ -57,9 +81,9 @@ input[type=password]:focus, input[type=number]:focus { outline: none; border-bot
   gap: 24px 56px;
   margin-top: 72px;
   padding-top: 20px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--card-line);
 }
-.block-head h2 { margin: 0 0 8px; font: 400 34px/1 var(--serif); }
+.block-head h2 { margin: 0 0 8px; font: 600 26px/1 var(--display); }
 .block-head p { margin: 0; color: var(--ink-soft); font-size: 14px; }
 
 .settings { display: grid; gap: 18px; }
@@ -95,6 +119,7 @@ code { font-size: 13px; color: var(--ink); }
   grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
+  background: rgba(60, 3, 9, .35);
   max-height: 340px;
   overflow: auto;
 }
@@ -102,7 +127,7 @@ code { font-size: 13px; color: var(--ink); }
   padding: 10px 0; text-align: center; font-size: 14px; letter-spacing: .14em;
   border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
-.codes span.used { color: var(--line); text-decoration: line-through; }
+.codes span.used { color: rgba(244, 200, 180, .3); text-decoration: line-through; }
 
 .link {
   appearance: none; background: none; border: 0; padding: 0; cursor: pointer;

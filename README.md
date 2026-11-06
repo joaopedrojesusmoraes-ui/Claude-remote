@@ -107,5 +107,6 @@ server.js        servidor Express + API
 db.js            banco (SQLite local ou PostgreSQL), regras de voto atômicas
 candidates.js    lista de candidatos
 public/          páginas (votação e painel)
+public/img/      coroas, flores, pétalas, título e divisores (recortados da arte do baile)
 render.yaml      deploy automático no Render
 ```
